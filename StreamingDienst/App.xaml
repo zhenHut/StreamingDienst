@@ -1,0 +1,19 @@
+﻿<Application x:Class="StreamingDienst.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:StreamingDienst"
+             StartupUri="View/MainWindow.xaml">
+    <Application.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/BasicInputStyle.xaml" />
+                <ResourceDictionary Source="/Resources/RoundedPasswordBoxStyle.xaml" />
+                <ResourceDictionary Source="/Resources/RoundedTextBoxStyle.xaml" />
+                <ResourceDictionary Source="/Resources/CloseButtonStyle.xaml"/>
+                <ResourceDictionary Source="/Resources/ModernButtonStyle.xaml" />
+                <ResourceDictionary Source="/Resources/TextBlockStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

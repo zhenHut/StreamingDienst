@@ -1,0 +1,70 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="RoundedTextBoxStyle"
+           TargetType="TextBox"
+           BasedOn="{StaticResource BasicInputStyle}">
+
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        
+        <Setter Property="Padding"
+                Value="5,0" />
+
+        <Setter Property="FontSize"
+                Value="15" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="10">
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Padding="{TemplateBinding Padding}" />
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <!-- Focus-Effekt -->
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="True">
+                            <Setter TargetName="Border"
+                                    Property="BorderBrush"
+                                    Value="#FF888888" />
+                            <Setter TargetName="Border"
+                                    Property="BorderThickness"
+                                    Value="2" />
+                        </Trigger>
+
+                        <!-- Deaktiviert -->
+                        <Trigger Property="IsEnabled"
+                                 Value="False">
+                            <Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="#FFE5E5E5" />
+                            <Setter TargetName="Border"
+                                    Property="BorderBrush"
+                                    Value="#FFAAAAAA" />
+
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsEnabled"
+                     Value="False">
+                <Setter Property="Foreground"
+                        Value="#FF888888" />
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
+
+
+</ResourceDictionary>

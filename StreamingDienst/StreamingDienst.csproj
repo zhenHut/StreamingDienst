@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icon\logoicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Resources\BasicInputStyle.xaml" />
+    <Page Remove="Resources\CloseButtonStyle.xaml" />
+    <Page Remove="Resources\ModernButtonStyle.xaml" />
+    <Page Remove="Resources\RoundedPasswordBoxStyle.xaml" />
+    <Page Remove="Resources\RoundedTextBoxStyle.xaml" />
+    <Page Remove="Resources\TextBlockStyle.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icon\logoicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\BasicInputStyle.xaml" />
+    <Resource Include="Resources\CloseButtonStyle.xaml" />
+    <Resource Include="Resources\ModernButtonStyle.xaml" />
+    <Resource Include="Resources\RoundedPasswordBoxStyle.xaml" />
+    <Resource Include="Resources\RoundedTextBoxStyle.xaml" />
+    <Resource Include="Resources\TextBlockStyle.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+  </ItemGroup>
+
+</Project>
