@@ -1,15 +1,9 @@
 ﻿using StreamingDienst.Commands;
-using StreamingDienst.Controls;
-using StreamingDienst.StandardFenster;
+using StreamingDienst.Services;
 using StreamingDienst.View;
-using System.Net.Http;
 using System.Security;
-using System.Windows.Input;
-using System.Text.Json;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.ComponentModel;
+using System.Windows.Input;
 
 namespace StreamingDienst.ViewModel
 {
@@ -19,15 +13,19 @@ namespace StreamingDienst.ViewModel
 
         public LoginViewModel()
         {
+            _authService = new AuthService();
             LoginCommand = new RelayCommand(async _ => await ExecuteLogin(), CanExecuteLogin);
             CloseCommand = new RelayCommand(ExecuteCloseWindow);
+
         }
 
         #endregion
 
         #region Fields
 
-        private string _email= string.Empty;
+        private readonly IAuthService _authService;
+
+        private string _email = string.Empty;
         #endregion
 
         #region Properties
@@ -36,14 +34,29 @@ namespace StreamingDienst.ViewModel
             get => _email;
             set
             {
+                if (_email == value)
+                    return;
+
                 _email = value;
                 OnPropertyChanged();
                 (LoginCommand as RelayCommand)?.RaiseCanExecuteChanged();
             }
         }
-        public SecureString SecurePassword { get; set; } = new SecureString();
+
+        private SecureString _securePassword;
+
+        public SecureString SecurePassword
+        {
+            get => _securePassword;
+            set
+            {
+                if (SetProperty(ref _securePassword, value))
+                    (LoginCommand as RelayCommand)?.RaiseCanExecuteChanged();
+            }
+        }
 
         public bool LoginSuccesful { get; private set; }
+
         public ICommand LoginCommand { get; }
 
         public ICommand CloseCommand { get; }
@@ -54,45 +67,13 @@ namespace StreamingDienst.ViewModel
 
         private async Task ExecuteLogin()
         {
+            var success = await _authService.LoginAsync(Email, SecurePassword);
 
-            var passwordFrombox = SecurePasswordBoxControl.SecureStringToString(SecurePassword);
-            var loginUserdata = new
+            if (success)
             {
-                email = Email,
-                password = passwordFrombox
-            };
-
-            var json = JsonSerializer.Serialize(loginUserdata);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            using var client = new HttpClient();
-
-            try
-            {
-                var response = await client.PostAsync("https:localhost:7016/api/auth/login", content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    // Login erfolgreich
-                    MessageBox.Show("Login erfolgreich", "Erfolg", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                    // Nächstes Fenster öffnen
-                    new UserData().Show();
-
-                    // Loginfenster schließen
-                    Application.Current.Windows[0]?.Close();
-                }
-                else
-                {
-                    var error = await response.Content.ReadAsStringAsync();
-                    MessageBox.Show($"Fehler: {error}", "Login fehlgeschlagen", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+                new UserData().Show();
+                Application.Current.Windows[0]?.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Verbindungsfehler: {ex.Message}", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
         }
 
         private bool CanExecuteLogin(object parameter)
@@ -101,7 +82,6 @@ namespace StreamingDienst.ViewModel
             return canExecute;
         }
 
-
         private void ExecuteCloseWindow(object parameter)
         {
             if (parameter is Window window)
@@ -109,7 +89,6 @@ namespace StreamingDienst.ViewModel
                 window.Close();
             }
         }
-
 
         #endregion
     }

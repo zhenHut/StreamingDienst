@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamingDienst.Tests", "St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamingDienst.API", "StreamingDienst.API\StreamingDienst.API.csproj", "{0B5A66AB-4272-45D7-AC95-FFDCA1B7F685}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamingDienst.Shared.Dtos", "Shared\StreamingDienst.Shared.Dtos.csproj", "{50D4F12E-3134-4461-81F8-49CB6E9B9297}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0B5A66AB-4272-45D7-AC95-FFDCA1B7F685}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B5A66AB-4272-45D7-AC95-FFDCA1B7F685}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B5A66AB-4272-45D7-AC95-FFDCA1B7F685}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50D4F12E-3134-4461-81F8-49CB6E9B9297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50D4F12E-3134-4461-81F8-49CB6E9B9297}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50D4F12E-3134-4461-81F8-49CB6E9B9297}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50D4F12E-3134-4461-81F8-49CB6E9B9297}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

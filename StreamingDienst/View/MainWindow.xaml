@@ -15,7 +15,7 @@
         Background="Transparent"
         Foreground="Transparent"
         Icon="/Icon/logoicon.ico">
-    
+
     <!--#region Window Hintergrund und Ränder-->
     <Border CornerRadius="15"
             BorderBrush="Gray"
@@ -33,7 +33,7 @@
         </Border.Background>
         <!--#endregion-->
 
-        <Grid >
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -47,16 +47,13 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            
+
             <!--#region Fensterleiste -->
-            <titlebar:WindowTitleBar
-                                     
-                                     Grid.Row="0"
+            <titlebar:WindowTitleBar Grid.Row="0"
                                      Grid.ColumnSpan="3"
                                      VerticalAlignment="top"
                                      HorizontalAlignment="Stretch"
-                                     BarCornerRadius="15 15 0 0 "
-                                     BorderBrush="Transparent"
+                                     BarCornerRadius="10 10 0 0 "
                                      TitleBarBackground="#FF2D2D30"
                                      BorderThickness="1"
                                      CloseButtonStyle="{StaticResource CloseButtonStyle}"
@@ -123,8 +120,9 @@
                 </Grid>
             </Border>-->
             <!--#endregion-->
-<!-- endregion-->
-            <!--#endregion Header-->
+            <!-- endregion-->
+            
+            <!--#region Header-->
             <TextBlock Grid.Row="1"
                        Grid.ColumnSpan="3"
                        Text="Stream it"
@@ -146,7 +144,7 @@
                         Margin="0 20">
 
                 <!-- Benutzername -->
-                <TextBlock Text="Benutzername"
+                <TextBlock Text="E-Mail Adresse"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
                            Style="{StaticResource TextBlockStyle}" />
@@ -154,7 +152,7 @@
                 <TextBox x:Name="TxtBxUsername"
                          Margin="0 0 0 20"
                          Width="200"
-                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource RoundedTextBoxStyle}" />
 
                 <!-- Passwort -->
@@ -167,7 +165,7 @@
                                                        Margin="0 0 0 50"
                                                        VerticalAlignment="Center"
                                                        Width="200"
-                                                       SecurePassword="{Binding SecurePassword, Mode= TwoWay}" />
+                                                       SecurePassword="{Binding SecurePassword, Mode=TwoWay}" />
 
                 <!-- Anmelde-Button -->
                 <Button x:Name="BtnAnmeldung"
@@ -190,7 +188,7 @@
                        FontSize="15"
                        Text="&#x00A9; 2025  Andres Möring"
                        Foreground="Black"
-                       Margin="0 0 15 0"/>
+                       Margin="0 0 15 0" />
 
             <!--#endregion-->
 
