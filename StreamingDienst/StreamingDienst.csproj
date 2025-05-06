@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\StreamingDienst.Shared.Dtos.csproj" />
+    <ProjectReference Include="..\Shared\StreamingDienst.Shared.csproj" />
   </ItemGroup>
 
 </Project>

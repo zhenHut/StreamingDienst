@@ -1,14 +1,9 @@
 ﻿using StreamingDienst.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using StreamingDienst.Shared.Dtos;
+using System.Net.Http;
 using System.Security;
 using System.Text;
-using System.Threading.Tasks;
-using StreamingDienst.Shared.Dtos;
-using Shared;
 using System.Text.Json;
-using System.Net.Http;
 using System.Windows;
 
 namespace StreamingDienst.Services

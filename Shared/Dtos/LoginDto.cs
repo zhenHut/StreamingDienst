@@ -1,4 +1,4 @@
-﻿namespace Shared
+﻿namespace StreamingDienst.Shared.Dtos
 {
     public class LoginDto
     {

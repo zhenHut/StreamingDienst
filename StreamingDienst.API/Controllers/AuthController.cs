@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using StreamingDienst.API.DTOs;
-using StreamingDienst.API.Models;
 using Microsoft.EntityFrameworkCore;
 using StreamingDienst.API.Data;
-using BCrypt.Net;
+using StreamingDienst.API.Models;
+using StreamingDienst.Shared.Dtos;
 
-namespace StreamingDienst.Controllers
+namespace StreamingDienst.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
