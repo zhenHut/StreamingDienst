@@ -5,7 +5,7 @@
            TargetType="TextBlock">
         
         <Setter Property="Foreground"
-                Value="#FFA9B116" />
+                Value="{StaticResource FontForegroundBrush}" />
         
         <Setter Property="FontSize"
                 Value="20" />

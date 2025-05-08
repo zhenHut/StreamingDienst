@@ -28,20 +28,10 @@ namespace StreamingDienst.View
 
         #region Methods 
 
-        //private void BtnAnmelden_Click(object sender, RoutedEventArgs e)
-        //{
-        //    _viewModel.SecurePassword = SecurePassWordBox.SecurePassword;
-        //}
-
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if(e.LeftButton is MouseButtonState.Pressed )
                 this.DragMove();
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
 
         #endregion

@@ -3,7 +3,7 @@ using StreamingDienst.API.Models;
 
 namespace StreamingDienst.API.Data
 
-{
+{   // Dient für das Entity Framework zu PostgreSql
     public class AppDbContext : DbContext
     {
         #region Constructor

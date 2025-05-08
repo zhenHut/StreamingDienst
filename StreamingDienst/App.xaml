@@ -8,6 +8,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/BasicInputStyle.xaml" />
+                <ResourceDictionary Source="/Resources/Colors.xaml" />
+                <ResourceDictionary Source="/Resources/BorderStyle.xaml" />
                 <ResourceDictionary Source="/Resources/RoundedPasswordBoxStyle.xaml" />
                 <ResourceDictionary Source="/Resources/RoundedTextBoxStyle.xaml" />
                 <ResourceDictionary Source="/Resources/CloseButtonStyle.xaml"/>

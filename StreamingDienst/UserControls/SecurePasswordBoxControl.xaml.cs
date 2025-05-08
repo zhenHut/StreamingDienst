@@ -2,8 +2,9 @@
 using System.Security;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
-namespace StreamingDienst.Controls
+namespace StreamingDienst.UserControls
 {
     /// <summary>
     /// Interaktionslogik für PasswordBoxControl.xaml
@@ -23,54 +24,98 @@ namespace StreamingDienst.Controls
 
         #endregion
 
+
+
         #region Dependency Property
-        public static readonly DependencyProperty SecurePasswordPropertyKey = 
-            DependencyProperty.Register(nameof(SecurePassword),typeof(SecureString), typeof(SecurePasswordBoxControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public static readonly DependencyProperty SecurePasswordChangeCommandProperty =
+            DependencyProperty.Register(nameof(SecurePasswordChangedCommand),
+                typeof(ICommand),
+                typeof(SecurePasswordBoxControl),
+                new PropertyMetadata(null));
+        #endregion
+
+        #region Events
+        //public static readonly RoutedEvent SecurePasswordChangedEvent =
+        //    EventManager.RegisterRoutedEvent(nameof(SecurePasswordChanged),
+        //        RoutingStrategy.Bubble,
+        //        typeof(RoutedEventHandler), typeof(SecurePasswordBoxControl));
+
+        #endregion
+
+        #region EventHandler
+        //public event RoutedEventHandler SecurePasswordChanged
+        //{
+        //    add => AddHandler(SecurePasswordChangedEvent, value);
+        //    remove => RemoveHandler(SecurePasswordChangedEvent, value);
+        //}
 
         #endregion
 
         #region Property
-        public SecureString SecurePassword
+
+        public SecureString SecurePassword => PwdBox.SecurePassword.Copy();
+
+        public ICommand SecurePasswordChangedCommand
         {
-            get { return (SecureString)GetValue(SecurePasswordPropertyKey); } 
-            set { SetValue(SecurePasswordPropertyKey, value); }
+            get => (ICommand)GetValue(SecurePasswordChangeCommandProperty);
+            set => SetValue(SecurePasswordChangeCommandProperty, value);
         }
 
         #endregion
 
         #region Methods
-        private void PwdBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            SecurePassword = PwdBox.SecurePassword;
 
-            if (!_isPasswordVisible)
-            {
-                TxtVisible.Text = SecureStringToString(PwdBox.SecurePassword);
-            }
-        }
-
-        public static string SecureStringToString(SecureString value)
+        public static string SecureStringToString(SecureString secure)
         {
-            IntPtr bstr = Marshal.SecureStringToBSTR(value);
+            if (secure == null)
+                return string.Empty;
+
+            IntPtr bstr = IntPtr.Zero;
+
             try
             {
+                bstr = Marshal.SecureStringToBSTR(secure);
                 return Marshal.PtrToStringBSTR(bstr);
             }
             finally
             {
-                Marshal.ZeroFreeBSTR(bstr);
+                if (bstr != IntPtr.Zero)
+                    Marshal.ZeroFreeBSTR(bstr);
             }
         }
 
         #endregion
 
 
-        #region EventMethods
+        #region Event Methods
+
+
+        private void PwdBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (!_isPasswordVisible)
+            {
+                TxtVisible.Text = SecureStringToString(PwdBox.SecurePassword);
+            }
+
+            if (SecurePasswordChangedCommand?.CanExecute(null) == true)
+                SecurePasswordChangedCommand.Execute(SecurePassword);
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Dient zur Anzeige des Passworts
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        #region Button Methods
         private void BntToggleVisibility_Click(object sender, RoutedEventArgs e)
         {
             _isPasswordVisible = !_isPasswordVisible;
 
-            if (_isPasswordVisible) 
+            if (_isPasswordVisible)
             {
                 TxtVisible.Text = SecureStringToString(PwdBox.SecurePassword);
                 TxtVisible.Visibility = Visibility.Visible;

@@ -5,10 +5,10 @@
     <Style x:Key="ModernButtonStyle"
            TargetType="Button">
         <Setter Property="Background"
-                Value="#FF293801" />
+                Value="{StaticResource ButtonBackgroundBrush}" />
 
         <Setter Property="Foreground"
-                Value="#FFA9D43B" />
+                Value="{StaticResource FontForegroundBrush}" />
 
         <Setter Property="BorderThickness"
                 Value=" 0" />

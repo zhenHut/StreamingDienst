@@ -14,8 +14,10 @@ namespace StreamingDienst.ViewModel
         public LoginViewModel()
         {
             _authService = new AuthService();
+            PasswordChangedCommand = new RelayCommand<SecureString>(ExecutePasswordChanged);
             LoginCommand = new RelayCommand(async _ => await ExecuteLogin(), CanExecuteLogin);
             CloseCommand = new RelayCommand(ExecuteCloseWindow);
+            //RegistrationCommand = new RelayCommand()
 
         }
 
@@ -61,6 +63,10 @@ namespace StreamingDienst.ViewModel
 
         public ICommand CloseCommand { get; }
 
+        public ICommand PasswordChangedCommand { get; }
+
+        public ICommand RegistrationCommand {  get; }
+
         #endregion
 
         #region Methods
@@ -76,13 +82,13 @@ namespace StreamingDienst.ViewModel
             }
         }
 
-        private bool CanExecuteLogin(object parameter)
+        private bool CanExecuteLogin(object? parameter)
         {
             var canExecute = !string.IsNullOrWhiteSpace(Email) && SecurePassword != null && SecurePassword.Length > 0;
             return canExecute;
         }
 
-        private void ExecuteCloseWindow(object parameter)
+        private void ExecuteCloseWindow(object? parameter)
         {
             if (parameter is Window window)
             {
@@ -90,6 +96,15 @@ namespace StreamingDienst.ViewModel
             }
         }
 
+        private void ExecutePasswordChanged(SecureString secPassword)
+        {
+            SecurePassword = secPassword;
+        }
+    
+        private void ExecuteRegistration(object? parameter)
+        {
+
+        }
         #endregion
     }
 }

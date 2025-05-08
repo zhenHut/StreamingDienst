@@ -177,8 +177,14 @@ namespace StreamingDienst.StandardFenster
         #endregion
 
         #region EventMethods
-      
+
 
         #endregion
+
+        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            window?.DragMove();
+        }
     }
 }

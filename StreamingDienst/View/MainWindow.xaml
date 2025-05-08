@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:SecPwControl="clr-namespace:StreamingDienst.Controls"
+        xmlns:SecPwControl="clr-namespace:StreamingDienst.UserControls"
         xmlns:titlebar="clr-namespace:StreamingDienst.StandardFenster"
         xmlns:local="clr-namespace:StreamingDienst"
         mc:Ignorable="d"
@@ -13,15 +13,12 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Foreground="Transparent"
         Icon="/Icon/logoicon.ico">
 
     <!--#region Window Hintergrund und Ränder-->
-    <Border CornerRadius="15"
-            BorderBrush="Gray"
-            BorderThickness="1">
+    <Border Style="{StaticResource BorderStyle}">
 
-        <Border.Background>
+        <!--<Border.Background>
 
             <LinearGradientBrush EndPoint="0.5,1"
                                  StartPoint="0.5,0">
@@ -30,7 +27,7 @@
                               Offset="1" />
             </LinearGradientBrush>
 
-        </Border.Background>
+        </Border.Background>-->
         <!--#endregion-->
 
         <Grid>
@@ -121,14 +118,14 @@
             </Border>-->
             <!--#endregion-->
             <!-- endregion-->
-            
+
             <!--#region Header-->
             <TextBlock Grid.Row="1"
                        Grid.ColumnSpan="3"
                        Text="Stream it"
                        FontSize="60"
                        FontWeight="Light"
-                       Foreground="#FFA9B116"
+                       Foreground="{StaticResource FontForegroundBrush}"
                        FontFamily="Ink Free"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"
@@ -165,7 +162,7 @@
                                                        Margin="0 0 0 50"
                                                        VerticalAlignment="Center"
                                                        Width="200"
-                                                       SecurePassword="{Binding SecurePassword, Mode=TwoWay}" />
+                                                       SecurePasswordChangedCommand="{Binding PasswordChangedCommand}" />
 
                 <!-- Anmelde-Button -->
                 <Button x:Name="BtnAnmeldung"
@@ -176,6 +173,17 @@
                         Style="{StaticResource ModernButtonStyle}"
                         Command="{Binding LoginCommand}"
                         ToolTip="Button aktiv nach Eingabe der E-Mail und Passwort." />
+
+                <!-- Registrierung -->
+                <TextBlock Text="Noch kein Konto?"
+                           Margin="0 10 0 0 "
+                           Foreground="{StaticResource FontForegroundBrush}"
+                           HorizontalAlignment="Center" />
+
+                <Button Content="Registrieren"
+                        Style="{StaticResource ModernButtonStyle}"
+                        HorizontalAlignment="Center"
+                        Command="{Binding RegistrationCommand}" />
             </StackPanel>
 
             <!--#endregion-->

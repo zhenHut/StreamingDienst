@@ -15,6 +15,7 @@
   <ItemGroup>
     <Page Remove="Resources\BasicInputStyle.xaml" />
     <Page Remove="Resources\CloseButtonStyle.xaml" />
+    <Page Remove="Resources\Colors.xaml" />
     <Page Remove="Resources\ModernButtonStyle.xaml" />
     <Page Remove="Resources\RoundedPasswordBoxStyle.xaml" />
     <Page Remove="Resources\RoundedTextBoxStyle.xaml" />
@@ -27,6 +28,7 @@
     </Resource>
     <Resource Include="Resources\BasicInputStyle.xaml" />
     <Resource Include="Resources\CloseButtonStyle.xaml" />
+    <Resource Include="Resources\Colors.xaml" />
     <Resource Include="Resources\ModernButtonStyle.xaml" />
     <Resource Include="Resources\RoundedPasswordBoxStyle.xaml" />
     <Resource Include="Resources\RoundedTextBoxStyle.xaml" />
